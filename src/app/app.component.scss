@@ -1,0 +1,23 @@
+app-header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 80px 20px 30px;
+  box-sizing: border-box;
+}
+
+app-footer {
+  height: 80px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+app-menu {
+  width: 80px;
+}
+
+.content {
+  height: calc(100vh - 160px);
+  display: flex;
+}

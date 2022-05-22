@@ -1,0 +1,79 @@
+<header>
+  <div>
+    <h2>Reports</h2>
+    <h3>Easily generate a report of your transactions</h3>
+  </div>
+  <div class="selectors">
+    <mat-form-field appearance="legacy">
+      <select matNativeControl (change)="selectProject($event)">
+        <option [value]="" [selected]="true">All projects</option>
+        <option *ngFor="let project of projects" [value]="project.projectId">{{project.name}}</option>
+      </select>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <select matNativeControl (change)="selectGateway($event)">
+        <option [value]="" [selected]="true">All gateways</option>
+        <option *ngFor="let gateway of gateways" [value]="gateway.gatewayId">{{gateway.name}}</option>
+      </select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="date-field">
+      <mat-label>From date</mat-label>
+      <input matInput [matDatepicker]="datepickerFrom" (dateChange)="fromDate($event)">
+      <mat-datepicker-toggle matSuffix [for]="datepickerFrom"></mat-datepicker-toggle>
+      <mat-datepicker #datepickerFrom>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="date-field">
+      <mat-label>To date</mat-label>
+      <input matInput [matDatepicker]="datepickerTo" (dateChange)="toDate($event)">
+      <mat-datepicker-toggle matSuffix [for]="datepickerTo"></mat-datepicker-toggle>
+      <mat-datepicker #datepickerTo>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button (click)="getReport()">Generate report</button>
+  </div>
+</header>
+
+<section>
+  <div class="no-report" *ngIf="!reports?.length">
+    <h2>No reports</h2>
+    <p>Currently you have no data for the reports to be generated.<br>
+      Once you start generating traffic through the Balance application
+      the reports will be shown.</p>
+  </div>
+
+  <div *ngIf="reports?.length">
+    <h5>{{projectName || 'All projects'}} | {{gatewayName || 'All gateways'}}</h5>
+  </div>
+
+  <div [class]="{'with-doughnut': gateway && !project}">
+    <app-report-table *ngIf="reports?.length && project"
+                      [reports]="reports"
+                      [projectId]="project"
+                      [hasTotal]="true">
+    </app-report-table>
+
+    <mat-accordion *ngIf="reports?.length && !project">
+      <mat-expansion-panel hideToggle *ngFor="let pr of projects">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{pr.name}}</mat-panel-title>
+          <mat-panel-description>TOTAL: {{totals[pr.projectId] | currency}}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-report-table [reports]="reports" [projectId]="pr.projectId" [hasTotal]="false">
+        </app-report-table>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="doughnut" *ngIf="reports?.length && gateway && !project">
+      <canvas baseChart [data]="doughnutChartData" [type]="doughnutChartType"></canvas>
+    </div>
+  </div>
+</section>

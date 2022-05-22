@@ -1,0 +1,37 @@
+:host {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  a {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    margin: 10px;
+    background-image: url(../../../assets/images/menu-icons.svg);
+    background-repeat: no-repeat;
+
+    &.something1 {
+      background-position: 0 0;
+    }
+
+    &.something2 {
+      background-position: 0 -47px;
+    }
+
+    &.something3 {
+      background-position: 0 -97px;
+    }
+
+    &.reports {
+      background-position: 0 -142px;
+    }
+
+    &.logout {
+      background-position: 0 -193px;
+    }
+  }
+}

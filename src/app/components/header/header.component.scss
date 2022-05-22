@@ -1,0 +1,34 @@
+.logo, .menu {
+  height: 40px;
+  width: 27px;
+}
+
+.menu {
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.user {
+  font-weight: 700;
+
+  i {
+    display: inline-block;
+    text-align: center;
+    min-width: 37px;
+    height: 43px;
+    padding: 0 3px;
+    background: #F6CA65;
+    border-radius: 5px;
+    color: white;
+    font-style: normal;
+    font-size: 23px;
+    line-height: 45px;
+  }
+
+  span {
+    font-size: 16px;
+    line-height: 18px;
+    color: #005B96;
+    margin-left: 10px;
+  }
+}

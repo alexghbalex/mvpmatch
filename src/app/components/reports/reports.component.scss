@@ -1,0 +1,117 @@
+:host {
+  padding: 5px;
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100vw - 80px);
+  }
+}
+
+.selectors {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * {
+    margin: 0 20px;
+  }
+
+  button {
+    color: white;
+    background: #005B96;
+    height: 40px;
+    top: 20px
+  }
+
+  mat-form-field {
+    width: 135px;
+
+    select {
+      appearance: none;
+      background: #1BC5BD;
+      height: 33px;
+      padding: 3px;
+      border-radius: 5px;
+      color: white;
+
+      &.mat-input-element {
+        top: 0;
+        margin-bottom: 0;
+        box-sizing: content-box;
+      }
+    }
+
+    option {
+      color: white;
+      padding: 5px;
+    }
+
+    &.date-field {
+      ::ng-deep .mat-form-field-wrapper {
+        top: 20px;
+        color: white;
+
+        .mat-form-field-flex {
+          background: #1BC5BD;
+          height: 40px;
+          padding: 3px;
+          border-radius: 5px;
+        }
+      }
+
+      ::ng-deep path {
+        fill: white;
+      }
+    }
+
+    ::ng-deep .mat-form-field-underline {
+      display: none;
+    }
+  }
+}
+
+.no-report {
+  text-align: center;
+  max-width: 500px;
+  height: 600px;
+  margin: 120px auto;
+  background: url(../../../assets/images/no-report.png) no-repeat 0 138px;
+
+  h2 {
+    color: #011F4B;
+    font-size: 24px;
+  }
+
+  p {
+    color: #7E8299;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+}
+
+mat-panel-title, mat-panel-description {
+  font-weight: 700;
+}
+
+.doughnut {
+  display: block;
+  width: 270px;
+  height: 270px;
+}
+
+.with-doughnut {
+  display: flex;
+  justify-content: space-between;
+  & > * {
+    width: 48%;
+  }
+}
